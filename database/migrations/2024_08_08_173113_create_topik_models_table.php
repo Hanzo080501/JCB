@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->timestamp('published_at')->nullable();
             $table->string('published_by')->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('status')->default('draft');
             $table->softDeletes();
             $table->timestamps();

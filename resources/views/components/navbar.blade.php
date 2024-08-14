@@ -10,7 +10,7 @@
                 <li class="font-sans font-semibold text-[20px]"><a href="{{ route('about') }}">About</a></li>
                 <li class="font-sans font-semibold text-[20px]"><a href="{{ route('learningalltopik') }}">Courses</a>
                 </li>
-                <li class="font-sans font-semibold text-[20px]"><a href="{{ route('contact.index') }}">Contact</a></li>
+                <li class="font-sans font-semibold text-[20px]"><a href="#footer">Contact</a></li>
                 @guest
                     <li>
                         <button class="text-[#000000] outline outline-[#046AB8] px-5 py-2 rounded-3xl">
@@ -59,7 +59,7 @@
             <li class="font-sans font-semibold text-[20px]"><a href="{{ route('home') }}">Home</a></li>
             <li class="font-sans font-semibold text-[20px]"><a href="{{ route('about') }}">About</a></li>
             <li class="font-sans font-semibold text-[20px]"><a href="{{ route('learningalltopik') }}">Courses</a></li>
-            <li class="font-sans font-semibold text-[20px]"><a href="{{ route('contact.index') }}">Contact</a></li>
+            <li class="font-sans font-semibold text-[20px]"><a href="#footer">Contact</a></li>
 
             @guest
                 <li>

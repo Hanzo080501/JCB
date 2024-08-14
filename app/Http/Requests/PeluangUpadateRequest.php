@@ -23,13 +23,11 @@ class PeluangUpadateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'materi' => ['required', 'string'],
             'isi' => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
             'topik_id' => ['required', 'exists:topik_models,id'],
-            // 'file' => ['required|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx|max:20480'],
-            // 'video' => ['required|file|mimes:mp4,avi,mkv,webm|max:20480000'],
+            'url' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -40,17 +38,17 @@ class PeluangUpadateRequest extends FormRequest
             'string' => 'Field ini harus berupa teks.',
             'max' => 'Field ini tidak boleh melebihi :max karakter.',
             'image' => 'File harus berupa gambar.',
-            'date' => 'Field ini harus berupa tanggal.',
             'exists' => 'Field ini tidak valid.',
-            'file' => 'File harus berupa file.',
-            'max' => 'File harus berukuran kurang dari :max kilobyte.',
-            'video' => 'File harus berupa video.',
-            'mimes' => 'File harus berupa video.',
-            'materi' => 'Field ini harus diisi.',
-            'isi' => 'Field ini harus diisi.',
-            'description' => 'Field ini harus diisi.',
-            'topik_id' => 'Field ini harus diisi.',
-            'file' => 'File harus berupa file.',
+            'materi.required' => 'Materi harus diisi.',
+            'isi.required' => 'Field ini harus diisi.',
+            'deskripsi.required' => 'Field ini harus diisi.',
+            'topik_id.required' => 'Field ini harus diisi.',
+            'url.required' => 'Field ini harus diisi.',
+            'url.max' => 'Field ini tidak boleh melebihi :max karakter.',
+            'url.string' => 'Field ini harus berupa teks.',
+            'image.max' => 'File tidak boleh melebihi :max KB.',
+            'image.mimes' => 'File harus berupa jpeg, png, jpg, gif, svg.',
+            'image.image' => 'File harus berupa gambar.',
         ];
     }
 }

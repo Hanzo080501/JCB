@@ -14,7 +14,7 @@ class DetailCourseController extends Controller
         $peluang = PeluangModel::findOrFail($id);
         $materiArray = explode("\n", $peluang->materi);
         return view('users.detailcourse', [
-            'title' => 'detail course',
+            'title' => 'Detail course',
             'topik' => $topik,
             'peluang' => $peluang,
             'materi' => $materiArray
@@ -26,7 +26,7 @@ class DetailCourseController extends Controller
         $topik = TopikModel::all();
         $peluang = PeluangModel::findOrFail($id);
         return view('users.learningvideo', [
-            'title' => 'Learning',
+            'title' => 'Learning video',
             'topik' => $topik,
             'peluang' => $peluang
         ]);

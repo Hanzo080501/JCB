@@ -14,8 +14,15 @@
                 @else
                     <h3 class="text-[22px] font-semibold mb-4 md:mb-0">Semua Topik</h3>
                 @endif
-                <input type="text" class="w-full p-2 border border-gray-300 rounded-lg md:w-1/2 lg:w-1/3"
-                    placeholder="search">
+                <form action="{{ route('learningalltopik', $selectedTopikId ? $selectedTopikId->id : '') }}" method="GET"
+                    class="flex flex-col w-full gap-2 md:flex-row md:w-auto">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        class="w-full p-2 border border-gray-300 rounded-lg md:w-60 lg:w-72" placeholder="Search...">
+                    <button type="submit"
+                        class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Search
+                    </button>
+                </form>
             </div>
 
             <!-- Card Section -->
@@ -30,7 +37,7 @@
                             <div class="p-5">
                                 <a href="#">
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                                        {{ $data->title }}
+                                        {{ substr($data->title, 0, 15) }}...
                                     </h5>
                                 </a>
                                 <p class="mb-3 font-normal text-gray-700">
@@ -49,8 +56,13 @@
                         </div>
                     </div>
                 @empty
-                    <p>No data available</p>
+                    <p class="w-full py-4 text-center">No data available</p>
                 @endforelse
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-4">
+                {{ $peluang->appends(request()->query())->links() }}
             </div>
         </div>
     </div>

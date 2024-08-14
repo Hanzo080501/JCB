@@ -28,6 +28,7 @@ class PeluangStoreRequest extends FormRequest
             'isi' => ['required', 'string', 'max:255'],
             'deskripsi' => ['required', 'string'],
             'topik_id' => ['required', 'exists:topik_models,id'],
+            'url' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -38,12 +39,17 @@ class PeluangStoreRequest extends FormRequest
             'string' => 'Field ini harus berupa teks.',
             'max' => 'Field ini tidak boleh melebihi :max karakter.',
             'image' => 'File harus berupa gambar.',
-            'date' => 'Field ini harus berupa tanggal.',
             'exists' => 'Field ini tidak valid.',
             'materi.required' => 'Materi harus diisi.',
             'isi.required' => 'Field ini harus diisi.',
             'deskripsi.required' => 'Field ini harus diisi.',
             'topik_id.required' => 'Field ini harus diisi.',
+            'url.required' => 'Field ini harus diisi.',
+            'url.max' => 'Field ini tidak boleh melebihi :max karakter.',
+            'url.string' => 'Field ini harus berupa teks.',
+            'image.max' => 'File tidak boleh melebihi :max KB.',
+            'image.mimes' => 'File harus berupa jpeg, png, jpg, gif, svg.',
+            'image.image' => 'File harus berupa gambar.',
         ];
     }
 }

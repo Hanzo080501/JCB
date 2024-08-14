@@ -82,7 +82,12 @@
                         <input
                             class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('file') border-red-500 @enderror"
                             id="file" name="file" type="file"
-                            accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.odt,.xls,.xlsx">
+                            accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.rtf,.odt,.xls,.xlsx"
+                            value="{{ old('file', $peluang->file) }}">
+                        @if ($peluang->file)
+                            <p class="mt-2 text-sm text-gray-600">File saat ini: {{ $peluang->file }}</p>
+                        @endif
+
                         @error('file')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
                         @enderror
@@ -95,7 +100,8 @@
                         </label>
                         <input
                             class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('image') border-red-500 @enderror"
-                            id="image" name="image" type="file" onchange="previewImage(event)" accept="image/*">
+                            id="image" name="image" type="file" onchange="previewImage(event)" accept="image/*"
+                            value="{{ old('image', $peluang->image) }}">
                         @error('image')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
                         @enderror
@@ -117,15 +123,16 @@
                 </div>
                 <div class="w-full px-3 mb-6 md:w-1/2">
                     <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="video">
-                        Upload Video
+                        Url Video
                     </label>
                     <input
-                        class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('video') border-red-500 @enderror"
-                        id="video" name="video" type="file" accept="video/*">
-                    @error('video')
+                        class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('url') border-red-500 @enderror"
+                        id="url" name="url" type="text" placeholder="url video"
+                        value="{{ old('url', $peluang->url) }}">
+                    @error('url')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
-                    @if ($peluang->video)
+                    {{-- @if ($peluang->video)
                         <div class="mt-2">
                             <p class="text-sm text-gray-600">Current Video:</p>
                             <video width="320" height="240" controls>
@@ -133,7 +140,7 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="flex justify-end gap-2 p-6">
                     <a href="{{ route('peluang.index') }}"

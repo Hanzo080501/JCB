@@ -15,10 +15,13 @@ class PeluangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $topik = TopikModel::all();
-        $peluang = PeluangModel::orderBy('id', 'desc')->paginate(10);
+        // $peluang = PeluangModel::orderBy('id', 'desc')->paginate(10);
+        $peluang = PeluangModel::filter($request->only('search'))
+            ->orderBy('id', 'desc')
+            ->paginate(6);
         return view('admin.table.learningpeluang.index', [
             'title' => 'Peluang',
             'topik' => $topik,
@@ -55,6 +58,10 @@ class PeluangController extends Controller
         $peluang->isi = $validated['isi'];
         $peluang->topik_id = $validated['topik_id'];
         $peluang->deskripsi = $validated['deskripsi'];
+        // $peluang->url = $validated['url'];
+        $videoUrl = $validated['url'];
+        parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
+        $peluang->url = $queryParams['v'] ?? null;
 
         // Penanganan file image
         if ($request->hasFile('image')) {
@@ -73,12 +80,36 @@ class PeluangController extends Controller
         }
 
         // Penanganan video
-        if ($request->hasFile('video')) {
-            $video = $request->file('video');
-            $fileName = time() . '.' . uniqid() . '.' . $video->getClientOriginalExtension();
-            $video->storeAs('public/peluang/videos/', $fileName);
-            $peluang->video = $fileName;
-        }
+        // if ($request->hasFile('video')) {
+        //     $video = $request->file('video');
+        //     $fileName = time() . '.' . uniqid() . '.' . $video->getClientOriginalExtension();
+        //     $video->storeAs('public/peluang/videos/', $fileName);
+        //     $peluang->video = $fileName;
+        // }
+
+        // if ($request->hasFile('video')) {
+        //     $video = $request->file('video');
+        //     $fileName = time() . '.' . uniqid() . '.' . $video->getClientOriginalExtension();
+        //     $originalPath = $video->storeAs('public/peluang/videos/', $fileName);
+
+        //     // Kompres video
+        //     $compressedFileName = 'compressed_' . $fileName;
+        //     $compressedPath = storage_path('app/public/peluang/videos/' . $compressedFileName);
+
+        //     FFMpeg::fromDisk('public')
+        //         ->open('peluang/videos/' . $fileName)
+        //         ->addFilter('-vf', 'scale=1280:720') // Ubah resolusi video, contoh: 1280x720
+        //         ->export()
+        //         ->toDisk('public')
+        //         ->inFormat(new \FFMpeg\Format\Video\X264('libmp3lame'))
+        //         ->save('peluang/videos/' . $compressedFileName);
+
+        //     // Hapus video asli jika diperlukan
+        //     // Storage::disk('public')->delete('peluang/videos/' . $fileName);
+
+        //     // Simpan nama file yang dikompres ke database
+        //     $peluang->video = $compressedFileName;
+        // }
 
         // Simpan data ke database
         $peluang->save();
@@ -134,6 +165,10 @@ class PeluangController extends Controller
         $peluang->isi = $validated['isi'];
         $peluang->deskripsi = $validated['deskripsi'];
         $peluang->topik_id = $validated['topik_id'];
+        // $peluang->url = $validated['url'];
+        $videoUrl = $validated['url'];
+        parse_str(parse_url($videoUrl, PHP_URL_QUERY), $queryParams);
+        $peluang->url = $queryParams['v'] ?? null;
 
         // Penanganan file image
         if ($request->hasFile('image')) {
@@ -164,18 +199,18 @@ class PeluangController extends Controller
         }
 
         // Penanganan video
-        if ($request->hasFile('video')) {
-            // Hapus video lama jika ada
-            if ($peluang->video) {
-                Storage::disk('public')->delete('peluang/videos/' . $peluang->video);
-            }
+        // if ($request->hasFile('video')) {
+        //     // Hapus video lama jika ada
+        //     if ($peluang->video) {
+        //         Storage::disk('public')->delete('peluang/videos/' . $peluang->video);
+        //     }
 
-            // Simpan video baru
-            $video = $request->file('video');
-            $fileName = time() . '.' . uniqid() . '.' . $video->getClientOriginalExtension();
-            $video->storeAs('public/peluang/videos/', $fileName);
-            $peluang->video = $fileName;
-        }
+        //     // Simpan video baru
+        //     $video = $request->file('video');
+        //     $fileName = time() . '.' . uniqid() . '.' . $video->getClientOriginalExtension();
+        //     $video->storeAs('public/peluang/videos/', $fileName);
+        //     $peluang->video = $fileName;
+        // }
 
         // Simpan perubahan model
         $peluang->save();
@@ -203,9 +238,9 @@ class PeluangController extends Controller
             Storage::disk('public')->delete('peluang/files/' . $peluang->file);
         }
 
-        if ($peluang->video) {
-            Storage::disk('public')->delete('peluang/videos/' . $peluang->video);
-        }
+        // if ($peluang->video) {
+        //     Storage::disk('public')->delete('peluang/videos/' . $peluang->video);
+        // }
 
         $peluang->delete();
 

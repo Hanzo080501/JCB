@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DetailCourseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Kegitancroller;
@@ -32,7 +31,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/learningvideo/{id}', [DetailCourseController::class, 'video'])->name('learningvideo');
     Route::get('/about', [AboutController::class, 'index'])->name('about');
     Route::get('/detailcourse/{id}', [DetailCourseController::class, 'index'])->name('detailcourse');
-    Route::resource('/contact', ContactController::class);
 });
 
 Route::middleware(['auth', 'authorization'])->group(function () {
@@ -44,6 +42,10 @@ Route::middleware(['auth', 'authorization'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index', ['title' => 'Dashboard']);
     })->middleware(['auth'])->name('dashboard');
+    // dump(request('search'));
+    // if (request('search')) {
+    //     Route::get('/dashboard/search', [PeluangController::class, 'search'])->name('search');
+    // }
     Route::resource('/dashboard/kegiatan', Kegitancroller::class);
     Route::resource('/dashboard/topik', TopikController::class);
     Route::resource('/dashboard/peluang', PeluangController::class);

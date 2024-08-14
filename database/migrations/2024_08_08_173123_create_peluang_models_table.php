@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('peluang_models', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('materi')->nullable();
             $table->foreignId('topik_id')->constrained('topik_models')->onDelete('cascade');
             $table->string('isi')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('file')->nullable();
-            $table->string('video')->nullable();
+            $table->string('url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

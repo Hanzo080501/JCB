@@ -15,7 +15,8 @@ class Kegitancroller extends Controller
      */
     public function index()
     {
-        $kegiatan = Kegiatan::orderBy('id', 'desc')->paginate(10);
+        // $kegiatan = Kegiatan::orderBy('id', 'desc')->paginate(6);
+        $kegiatan = Kegiatan::filter(request()->only('search'))->orderBy('id', 'desc')->paginate(6);
         return view('admin.table.kegiatan.index', [
             'title' => 'Kegiatan',
             'kegiatan' => $kegiatan
@@ -66,7 +67,10 @@ class Kegitancroller extends Controller
      */
     public function edit(Kegiatan $kegiatan)
     {
-        return view('admin.table.kegiatan.edit', ['title' => 'Kegiatan', 'kegiatan' => $kegiatan]);
+        return view('admin.table.kegiatan.edit', [
+            'title' => 'Kegiatan',
+            'kegiatan' => $kegiatan
+        ]);
     }
 
     /**

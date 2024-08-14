@@ -20,7 +20,9 @@
                     untuk belajar matematika yang efektif
                 </p>
                 <div>
-                    <button class="text-white bg-[#046AB8] px-5 py-2 rounded-3xl">{{ __('Belajar Sekarang') }}</button>
+                    <a href="{{ route('learningalltopik') }}">
+                        <button class="text-white bg-[#046AB8] px-5 py-2 rounded-3xl">{{ __('Belajar Sekarang') }}</button>
+                    </a>
                 </div>
             </div>
             <div class="flex-1 w-full md:w-1/2">
@@ -125,6 +127,126 @@
                             </div>
                         </a>
                     </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"
+                            class="flex flex-col items-center p-6 bg-white border-gray-200 shadow md:flex-row md:max-w-xl rounded-3xl">
+                            <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero"
+                                class="object-cover w-full h-96 rounded-3xl md:h-auto md:w-48 md:rounded-none md:rounded-l-3xl">
+                            <div class="flex flex-col justify-between p-4 leading-normal">
+                                <h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Ketua</h4>
+                                <span class="text-gray-700 text-[20px]">Nafida Dwi Saputri M.,Pd</span>
+                                <p>Dosen Matematika UMBY</p>
+                            </div>
+                        </a>
+                    </div>
                     <!-- Repeat for all 16 items -->
                 </div>
             </div>
@@ -135,7 +257,7 @@
         <div class="px-5 mt-24">
             <h2 class="text-3xl font-bold text-center md:text-left">Kenapa harus JOYMA+H?</h2>
         </div>
-        <div class="flex flex-col gap-10 px-5 my-16 md:flex-row md:my-32 md:px-9">
+        <div class="grid grid-cols-1 gap-10 px-5 my-16 md:grid-cols-3 md:my-32 md:px-9">
             <div class="flex flex-col items-center justify-center px-5 text-center">
                 <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero" class="h-[120px] w-[120px]">
                 <h2 class="my-6 text-2xl font-bold">Kelebihan 1</h2>
@@ -155,6 +277,30 @@
             <div class="flex flex-col items-center justify-center px-5 text-center">
                 <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero" class="h-[120px] w-[120px]">
                 <h2 class="my-6 text-2xl font-bold">Kelebihan 3</h2>
+                <p class="w-56">
+                    Students practice at their own pace, first filling in gaps in their understanding and then
+                    accelerating their learning.
+                </p>
+            </div>
+            <div class="flex flex-col items-center justify-center px-5 text-center">
+                <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero" class="h-[120px] w-[120px]">
+                <h2 class="my-6 text-2xl font-bold">Kelebihan 4</h2>
+                <p class="w-56">
+                    Students practice at their own pace, first filling in gaps in their understanding and then
+                    accelerating their learning.
+                </p>
+            </div>
+            <div class="flex flex-col items-center justify-center px-5 text-center">
+                <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero" class="h-[120px] w-[120px]">
+                <h2 class="my-6 text-2xl font-bold">Kelebihan 5</h2>
+                <p class="w-56">
+                    Students practice at their own pace, first filling in gaps in their understanding and then
+                    accelerating their learning.
+                </p>
+            </div>
+            <div class="flex flex-col items-center justify-center px-5 text-center">
+                <img src="{{ asset('/assets/img/landing page.png') }}" alt="hero" class="h-[120px] w-[120px]">
+                <h2 class="my-6 text-2xl font-bold">Kelebihan 6</h2>
                 <p class="w-56">
                     Students practice at their own pace, first filling in gaps in their understanding and then
                     accelerating their learning.

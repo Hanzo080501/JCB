@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title }}</title>
+    <title>{{ $title ?? config('app.name') }}</title>
     {{-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> --}}
 
     {{-- Bootstrap@5.3.3 CSS Framework --}}
@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('admin/dist/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/dist/all.css') }}">
+    <link rel="icon" href="{{ asset('/assets/img/logo.png') }}" type="image/x-icon">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -37,6 +38,22 @@
         body {
             height: 100vh
         }
+
+        #profileToggle {
+            transition: all 0.3s ease;
+        }
+
+        #profileToggle.hidden {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+
+        #profileToggle.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
     </style>
     @yield('style')
 </head>
@@ -50,30 +67,32 @@
                     <i class="pr-2 text-white fas fa-bars" onclick="sidebarToggle()"></i>
                     <h1 class="p-2 text-white">Logo</h1>
                 </div>
-                <div class="flex flex-row items-center p-1">
-                    {{-- <a href="https://github.com/tailwindadmin/admin"
-                        class="hidden p-2 mr-2 text-white no-underline md:block lg:block">Github</a> --}}
-
-
-                    <img onclick="profileToggle()" class="inline-block w-8 h-8 rounded-full"
+                <div class="relative flex flex-row items-center p-1">
+                    <img onclick="profileToggle()" class="inline-block w-8 h-8 rounded-full cursor-pointer"
                         src="https://avatars0.githubusercontent.com/u/4323180?s=460&v=4" alt="">
                     <a href="#" onclick="profileToggle()"
-                        class="hidden p-2 text-white no-underline md:block lg:block">{{ Auth::user()->name }}</a>
-                    <div id="ProfileDropDown" class="absolute hidden mt-12 mr-1 bg-white rounded shadow-md pin-t pin-r">
-                        <ul class="list-reset">
-                            <li><a href="#" class="block px-4 py-2 text-black no-underline hover:bg-grey-light">My
-                                    account</a></li>
-                            <li><a href="#"
-                                    class="block px-4 py-2 text-black no-underline hover:bg-grey-light">Notifications</a>
+                        class="hidden p-2 text-white no-underline cursor-pointer md:block lg:block">{{ Auth::user()->name }}</a>
+
+                    <!-- Profile Dropdown -->
+                    <div id="ProfileDropDown"
+                        class="absolute z-50 hidden w-64 mt-48 bg-white rounded-lg shadow-lg right-1">
+                        <div class="flex items-center justify-between p-4 border-b">
+                            <h3 class="text-lg font-semibold">User Menu</h3>
+                            <button onclick="profileToggle()" class="text-gray-500 hover:text-gray-700">&times;</button>
+                        </div>
+                        <ul class="py-2">
+                            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-100">My Account</a>
+                            </li>
+                            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-100">Notifications</a>
                             </li>
                             <li>
-                                <hr class="mx-2 border-t border-grey-ligght">
+                                <hr class="my-2 border-gray-300">
                             </li>
                             <li>
-                                <form action="{{ route('logout') }}" method="POST" class="inline-block">
+                                <form action="{{ route('logout') }}" method="POST" class="inline-block w-full">
                                     @csrf
                                     <button type="submit"
-                                        class="block px-4 py-2 text-black no-underline hover:bg-grey-light">Logout</button>
+                                        class="block w-full px-4 py-2 text-left text-black hover:bg-gray-100">Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -81,6 +100,7 @@
                 </div>
             </div>
         </header>
+
         <!--/Header-->
         <div class="flex flex-1">
             @include('components.sidebar')

@@ -8,20 +8,25 @@ use Illuminate\Http\Request;
 
 class LearningController extends Controller
 {
-    public function index($topikId = null)
+    public function index(Request $request, $topikId = null)
     {
         $topik = TopikModel::all();
         $selectedTopik = null; // Inisialisasi default
 
         if ($topikId) {
             $selectedTopik = TopikModel::find($topikId);
-            $peluang = PeluangModel::where('topik_id', $topikId)->orderBy('id', 'desc')->paginate(10);
+            $peluang = PeluangModel::where('topik_id', $topikId)
+                ->filter($request->only('search'))
+                ->orderBy('id', 'desc')
+                ->paginate(8);
         } else {
-            $peluang = PeluangModel::orderBy('id', 'desc')->paginate(10);
+            $peluang = PeluangModel::filter($request->only('search'))
+                ->orderBy('id', 'desc')
+                ->paginate(8);
         }
 
         return view('users.learningalltopik', [
-            'title' => 'Learning',
+            'title' => 'All Topik',
             'topik' => $topik,
             'peluang' => $peluang,
             'selectedTopikId' => $selectedTopik

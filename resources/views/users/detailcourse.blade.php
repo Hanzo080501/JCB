@@ -11,8 +11,15 @@
             <div class="flex flex-col items-center justify-between mb-5 md:flex-row">
 
                 <h3 class="text-[22px] font-semibold mb-4 md:mb-0">{{ $peluang->title }}</h3>
-                <input type="text" class="w-full p-2 border border-gray-300 rounded-lg md:w-1/2 lg:w-1/3"
-                    placeholder="search">
+                <form action="{{ route('learningalltopik') }}" method="GET"
+                    class="flex flex-col w-full gap-2 md:flex-row md:w-auto">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        class="w-full p-2 border border-gray-300 rounded-lg md:w-60 lg:w-72" placeholder="Search...">
+                    <button type="submit"
+                        class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Search
+                    </button>
+                </form>
             </div>
 
             <!-- Card Section -->

@@ -16,7 +16,8 @@ class TopikController extends Controller
      */
     public function index()
     {
-        $topik = TopikModel::orderBy('id', 'desc')->paginate(10);
+        // $topik = TopikModel::orderBy('id', 'desc')->paginate(10);
+        $topik = TopikModel::filter(request()->only('search'))->orderBy('id', 'desc')->paginate(10);
         return view('admin.table.learningtopik.index', [
             'title' => 'Topik',
             'topik' => $topik

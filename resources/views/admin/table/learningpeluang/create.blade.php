@@ -36,7 +36,7 @@
                         </label>
                         <input
                             class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('isi') border-red-500 @enderror"
-                            id="isi" name="isi" type="text" placeholder="isi" value="{{ old('isi') }}">
+                            id="isi" name="isi" type="text" placeholder="Isi" value="{{ old('isi') }}">
                         @error('isi')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
                         @enderror
@@ -47,11 +47,10 @@
                         </label>
                         <textarea
                             class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('materi') border-red-500 @enderror"
-                            name="materi" rows="5" placeholder="Masukkan materi, pisahkan dengan newline atau enter"></textarea>
+                            id="materi" name="materi" rows="5" placeholder="Masukkan materi, pisahkan dengan newline atau enter">{{ old('materi') }}</textarea>
                         @error('materi')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
                         @enderror
-
                     </div>
                     <div class="w-full px-3 mb-6 md:w-1/2">
                         <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="topik_id">
@@ -89,7 +88,7 @@
                             Thumbnail
                         </label>
                         <input
-                            class="block w-full px-4 py-3 bg-gray-200 border border-red-500 rounded appearance-none focus:outline-none focus:bg-white"
+                            class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('image') border-red-500 @enderror"
                             id="image" name="image" type="file" onchange="previewImage(event)" accept="image/*">
                         @error('image')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
@@ -105,13 +104,13 @@
                     </div>
                 </div>
                 <div class="w-full px-3 mb-6 md:w-1/2">
-                    <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="video">
-                        Upload Video
+                    <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" for="url">
+                        Url Video
                     </label>
                     <input
-                        class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('video') border-red-500 @enderror"
-                        id="video" name="video" type="file" accept="video/*">
-                    @error('video')
+                        class="block w-full px-4 py-3 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white @error('url') border-red-500 @enderror"
+                        id="url" name="url" type="text" placeholder="url video" value="{{ old('url') }}">
+                    @error('url')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
@@ -131,13 +130,16 @@
 @section('scripts')
     <script>
         function previewImage(event) {
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('imagePreview');
-                output.innerHTML = '<img src="' + reader.result +
-                    '" class="object-cover w-full h-full" alt="Image Preview">';
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const output = document.getElementById('imagePreview');
+                    output.innerHTML = '<img src="' + reader.result +
+                        '" class="object-cover w-full h-full" alt="Image Preview">';
+                }
+                reader.readAsDataURL(file);
             }
-            reader.readAsDataURL(event.target.files[0]);
         }
     </script>
 @endsection

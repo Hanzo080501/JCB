@@ -13,14 +13,26 @@
             </iframe>
             <div class="p-4">
                 <h3 class="text-xl font-bold text-gray-900">{{ $peluang->title }}</h3>
+                <p class="text-sm text-gray-600">
+                    Dibuat pada: {{ \Carbon\Carbon::parse($peluang->created_at)->format('d M Y') }}
+                </p>
                 <p class="mt-2 text-gray-700">
-                    {{ $peluang->deskripsi }}
+                    <span class="description">
+                        {{ Str::limit($peluang->deskripsi, 100) }}
+                    </span>
+                    @if (strlen($peluang->deskripsi) > 100)
+                        <button id="readMoreBtn" class="text-blue-500 hover:underline">Baca Selengkapnya</button>
+                    @endif
+                    <span id="fullDescription" class="hidden">
+                        {{ $peluang->deskripsi }}
+                        <button id="readLessBtn" class="text-blue-500 hover:underline">Baca Lebih Sedikit</button>
+                        <br>
+                        <a href="{{ url('https://www.youtube.com/watch?v=' . $peluang->url) }}" target="_blank"
+                            class="text-blue-500 hover:underline">
+                            Link YouTube
+                        </a>
+                    </span>
                     <br>
-                    <a href="{{ url('https://www.youtube.com/watch?v=' . $peluang->url) }}" target="_blank"
-                        class="text-blue-500 hover:underline">
-                        Link YouTube
-                    </a>
-
                 </p>
 
                 <!-- Download Button -->
@@ -36,6 +48,30 @@
                 </a>
             </div>
         </div>
-
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const readMoreBtn = document.getElementById('readMoreBtn');
+            const fullDescription = document.getElementById('fullDescription');
+            const description = document.querySelector('.description');
+            const readLessBtn = document.getElementById('readLessBtn');
+
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', function() {
+                    fullDescription.classList.remove('hidden');
+                    description.classList.add('hidden');
+                    readMoreBtn.classList.add('hidden');
+                });
+
+                readLessBtn.addEventListener('click', function() {
+                    fullDescription.classList.add('hidden');
+                    description.classList.remove('hidden');
+                    readMoreBtn.classList.remove('hidden');
+                });
+            }
+        });
+    </script>
 @endsection

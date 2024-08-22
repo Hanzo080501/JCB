@@ -317,7 +317,7 @@
                 <div class="mx-auto carousel">
                     @forelse ($kegiatan as $data)
                         <div
-                            class="swiper-slide max-w-[300px] carousel-item bg-[#D9D9D9] border border-gray-200 rounded-lg shadow dark:bg-[#D9D9D9] dark:border-gray-700 overflow-hidden">
+                            class="swiper-slide max-w-[300px] h-auto carousel-item bg-[#D9D9D9] border border-gray-200 rounded-lg shadow dark:bg-[#D9D9D9] dark:border-gray-700 overflow-hidden">
                             <a href="#" class="w-full overflow-hidden">
                                 <img class="duration-150 rounded-t-lg hover:scale-125 hover:duration-500"
                                     src="{{ asset('storage/kegiatan/' . $data->image) }}" alt="card image" />
@@ -328,30 +328,29 @@
                                         {{ $data->title }}
                                     </h5>
                                 </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
-                                    {{ substr($data->deskripsi, 0, 40) }}...
+                                <p id="shortDescription-{{ $loop->index }}"
+                                    class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-3">
+                                    {{ Str::limit($data->deskripsi, 10) }}
                                 </p>
-                                <a href="#"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <p id="fullDescription-{{ $loop->index }}"
+                                    class="hidden mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                    {{ $data->deskripsi }}
+                                </p>
+                                <button id="readMoreBtn-{{ $loop->index }}"
+                                    class="read-more-btn inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Read more
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                                     </svg>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     @empty
                         <p>No data available</p>
                     @endforelse
                 </div>
-
-
-                <!-- Pagination and Navigation -->
-                <div class="swiper-pagination"></div>
-                <div id="prevv" class="material-icons swiper-button">arrow_circle_left</div>
-                <div id="nextt" class="material-icons swiper-button">arrow_circle_right</div>
             </div>
         </div>
 
@@ -418,40 +417,38 @@
         })
     </script>
 
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Swiper
-            const swiper = new Swiper('.swiper-container', {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '#nextt',
-                    prevEl: '#prevv',
-                },
-                slidesPerView: 1,
-                spaceBetween: 10,
-                breakpoints: {
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 30,
-                    },
-                },
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
 
-            // Add click event listeners to the navigation buttons
-            document.getElementById('nextt').addEventListener('click', function() {
-                swiper.slideNext();
-            });
+            readMoreButtons.forEach((btn, index) => {
+                btn.addEventListener('click', function() {
+                    const shortDescription = document.getElementById(`shortDescription-${index}`);
+                    const fullDescription = document.getElementById(`fullDescription-${index}`);
 
-            document.getElementById('prevv').addEventListener('click', function() {
-                swiper.slidePrev();
+                    if (fullDescription.classList.contains('hidden')) {
+                        // Tampilkan deskripsi lengkap
+                        fullDescription.classList.remove('hidden');
+                        shortDescription.classList.add('hidden');
+                        btn.innerHTML = `Read less
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>`;
+                    } else {
+                        // Kembali ke deskripsi pendek
+                        fullDescription.classList.add('hidden');
+                        shortDescription.classList.remove('hidden');
+                        btn.innerHTML = `Read more
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>`;
+                    }
+                });
             });
         });
     </script>

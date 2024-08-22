@@ -63,22 +63,35 @@
         }
     }
 
-    .swiper-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        cursor: pointer;
-        color: #046AB8;
-        font-size: 50px;
+    .swiper-slide {
+        max-width: 300px;
+        height: auto;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
-    #prevv {
-        left: 10px;
+    .swiper-slide .p-5 {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    #nextt {
-        right: 10px;
+    .swiper-slide .p-5 p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-height: 150px;
+        overflow: hidden;
+    }
+
+    .swiper-slide .p-5 #fullDescription {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .read-more-btn {
+        align-self: flex-start;
     }
 </style>
 

@@ -27,12 +27,12 @@
                         {{ $peluang->deskripsi }}
                         <button id="readLessBtn" class="text-blue-500 hover:underline">Baca Lebih Sedikit</button>
                         <br>
-                        <a href="{{ url('https://www.youtube.com/watch?v=' . $peluang->url) }}" target="_blank"
-                            class="text-blue-500 hover:underline">
-                            Link YouTube
-                        </a>
                     </span>
                     <br>
+                    <a href="{{ url('https://www.youtube.com/watch?v=' . $peluang->url) }}" target="_blank"
+                        class="text-blue-500 hover:underline">
+                        Link YouTube
+                    </a>
                 </p>
 
                 <!-- Download Button -->
